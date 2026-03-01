@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in Education (EdTech) - Comprehensive Use Cases</title>
+    <style>
+        :root {
+            --primary-color: #22c55e;
+            --secondary-color: #3b82f6;
+            --accent-color: #f59e0b;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --education-green: #22c55e;
+            --learning-blue: #3b82f6;
+            --knowledge-yellow: #f59e0b;
+            --scholarship-purple: #8b5cf6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-color), #0b1220);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--education-green), var(--learning-blue), var(--knowledge-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .nav-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-color: var(--primary-color);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(45deg, var(--education-green), var(--learning-blue));
+            border: none;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--education-green), var(--learning-blue), var(--knowledge-yellow));
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .icon.ml { background: rgba(34, 197, 94, 0.2); color: var(--education-green); }
+        .icon.gen { background: rgba(59, 130, 246, 0.2); color: var(--learning-blue); }
+        .icon.ag { background: rgba(139, 92, 246, 0.2); color: var(--scholarship-purple); }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-content {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, var(--education-green), var(--learning-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(255,255,255,0.1);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .architecture-diagram {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .architecture-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .architecture-item::before {
+            content: '→';
+            color: var(--education-green);
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-title {
+            color: var(--education-green);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-card {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--education-green);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .education-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .student-badge {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            margin-left: 0.5rem;
+        }
+
+        .learning-badge {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 AI in Education (EdTech)</h1>
+            <p class="subtitle">Comprehensive Guide to Machine Learning, Generative AI, and Agentic Systems in Learning & Development</p>
+        </header>
+
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showSection('ml')">🔮 ML / Predictive</button>
+            <button class="nav-btn" onclick="showSection('gen')">✍️ Generative AI</button>
+            <button class="nav-btn" onclick="showSection('agentic')">🤖 Agentic AI</button>
+        </div>
+
+        <!-- ML / Predictive Use Cases -->
+        <div id="ml" class="content-section active">
+            <h2 class="section-title">🔮 Machine Learning & Predictive Analytics</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                Advanced statistical models and algorithms for student success, learning optimization, and educational institution management
+            </p>
+
+            <div class="card-grid">
+                <!-- Student Dropout Prediction -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🎓</div>
+                        <div>
+                            <div class="card-title">Student Dropout Prediction</div>
+                            <div class="card-subtitle">Retention Analytics</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict students at risk of dropping out to enable early intervention and improve retention rates.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Predictive Analytics</span>
+                            <span class="tech-tag">Risk Assessment</span>
+                            <span class="tech-tag">Behavioral Analysis</span>
+                            <span class="tech-tag">Early Intervention</span>
+                            <span class="tech-tag">Retention Strategies</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Student Data → Risk Factors → Prediction Model → Intervention Planning → Support Services</div>
+                            <div class="architecture-item">Academic Performance → Engagement Metrics → Socioeconomic Factors → Dropout Probability → Prevention</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Academic performance and grades</li>
+                                <li>Attendance and engagement patterns</li>
+                                <li>Socioeconomic and demographic data</li>
+                                <li>Previous educational history</li>
+                                <li>Psychological and behavioral indicators</li>
+                                <li>Family and support system information</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Prediction Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Dropout Rate</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Intervention Success</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Forecasting -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">📊</div>
+                        <div>
+                            <div class="card-title">Performance Forecasting</div>
+                            <div class="card-subtitle">Academic Prediction</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict student academic performance to enable personalized learning paths and resource allocation.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Time Series Analysis</span>
+                            <span class="tech-tag">Performance Modeling</span>
+                            <span class="tech-tag">Learning Analytics</span>
+                            <span class="tech-tag">Trend Analysis</span>
+                            <span class="tech-tag">Intervention Planning</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Historical Data → Pattern Recognition → Performance Prediction → Learning Path → Optimization</div>
+                            <div class="architecture-item">Assessment Results → Study Habits → Engagement → Future Performance → Support Planning</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Historical academic performance</li>
+                                <li>Assessment and test results</li>
+                                <li>Study patterns and habits</li>
+                                <li>Class participation and engagement</li>
+                                <li>Learning style preferences</li>
+                                <li>External factors and influences</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Prediction Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">25-40%</div>
+                                <div class="metric-label">Performance Improvement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Resource Efficiency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning Path Optimization -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🗺️</div>
+                        <div>
+                            <div class="card-title">Learning Path Optimization</div>
+                            <div class="card-subtitle">Personalized Education</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Optimize individual learning paths based on student capabilities, preferences, and progress.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Adaptive Learning</span>
+                            <span class="tech-tag">Personalization</span>
+                            <span class="tech-tag">Content Recommendation</span>
+                            <span class="tech-tag">Progress Tracking</span>
+                            <span class="tech-tag">Skill Mapping</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Student Profile → Learning Style → Content Matching → Path Generation → Progress Monitoring</div>
+                            <div class="architecture-item">Skill Assessment → Gap Analysis → Resource Allocation → Adaptive Content → Outcome Tracking</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Student learning style assessments</li>
+                                <li>Previous academic performance</li>
+                                <li>Interest and preference surveys</li>
+                                <li>Skill gap analyses</li>
+                                <li>Content engagement metrics</li>
+                                <li>Progress tracking data</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">70-85%</div>
+                                <div class="metric-label">Learning Efficiency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Student Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Completion Rates</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Engagement Analytics -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">📈</div>
+                        <div>
+                            <div class="card-title">Engagement Analytics</div>
+                            <div class="card-subtitle">Student Participation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Analyze student engagement patterns to improve participation and learning outcomes.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Behavioral Analytics</span>
+                            <span class="tech-tag">Participation Tracking</span>
+                            <span class="tech-tag">Attention Analysis</span>
+                            <span class="tech-tag">Interaction Patterns</span>
+                            <span class="tech-tag">Motivation Assessment</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Activity Data → Engagement Scoring → Pattern Analysis → Intervention → Improvement</div>
+                            <div class="architecture-item">Class Participation → Online Activity → Assignment Completion → Engagement Level → Support</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Classroom participation records</li>
+                                <li>Online learning platform activity</li>
+                                <li>Assignment submission patterns</li>
+                                <li>Discussion forum engagement</li>
+                                <li>Learning resource usage</li>
+                                <li>Feedback and survey responses</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Engagement Detection</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">35-50%</div>
+                                <div class="metric-label">Participation</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">25-40%</div>
+                                <div class="metric-label">Learning Outcomes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Gap Detection -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🔍</div>
+                        <div>
+                            <div class="card-title">Skill Gap Detection</div>
+                            <div class="card-subtitle">Competency Analysis</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Identify skill gaps in students to provide targeted training and development opportunities.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Competency Assessment</span>
+                            <span class="tech-tag">Gap Analysis</span>
+                            <span class="tech-tag">Skill Mapping</span>
+                            <span class="tech-tag">Learning Analytics</span>
+                            <span class="tech-tag">Development Planning</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Current Skills → Required Skills → Gap Analysis → Training Plan → Skill Development</div>
+                            <div class="architecture-item">Assessment Data → Benchmarking → Deficiency Identification → Resource Matching → Progress Tracking</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Current skill assessments</li>
+                                <li>Curriculum requirements</li>
+                                <li>Industry competency standards</li>
+                                <li>Previous learning outcomes</li>
+                                <li>Learning pace and style</li>
+                                <li>Resource availability</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Gap Detection</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Skill Improvement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Training Efficiency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Demand Forecasting -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🎯</div>
+                        <div>
+                            <div class="card-title">Course Demand Forecasting</div>
+                            <div class="card-subtitle">Program Planning</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict course demand to optimize resource allocation and program offerings.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Demand Forecasting</span>
+                            <span class="tech-tag">Trend Analysis</span>
+                            <span class="tech-tag">Resource Planning</span>
+                            <span class="tech-tag">Market Analysis</span>
+                            <span class="tech-tag">Capacity Planning</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Historical Data → Trend Analysis → Demand Prediction → Resource Allocation → Course Planning</div>
+                            <div class="architecture-item">Student Preferences → Industry Trends → Capacity Analysis → Offering Optimization → Enrollment</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Historical enrollment data</li>
+                                <li>Industry job market trends</li>
+                                <li>Student preference surveys</li>
+                                <li>Graduate employment outcomes</li>
+                                <li>Resource availability and costs</li>
+                                <li>Competitor program offerings</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">75-85%</div>
+                                <div class="metric-label">Demand Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Resource Utilization</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">25-40%</div>
+                                <div class="metric-label">Student Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generative AI Use Cases -->
+        <div id="gen" class="content-section">
+            <h2 class="section-title">✍️ Generative AI Applications</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                AI-powered content creation, personalized learning, and educational support tools for modern education
+            </p>
+
+            <div class="card-grid">
+                <!-- Lesson Plan Creation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📝</div>
+                        <div>
+                            <div class="card-title">Lesson Plan Creation</div>
+                            <div class="card-subtitle">Curriculum Development</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate comprehensive lesson plans tailored to different learning styles, grade levels, and educational standards.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Curriculum Standards</span>
+                            <span class="tech-tag">Learning Objectives</span>
+                            <span class="tech-tag">Activity Design</span>
+                            <span class="tech-tag">Assessment Creation</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Standards → Learning Goals → Content Generation → Activities → Assessment → Implementation</div>
+                            <div class="architecture-item">Grade Level → Subject Area → Duration → Resources → Differentiation → Evaluation</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Educational standards and frameworks</li>
+                                <li>Grade-level expectations</li>
+                                <li>Subject matter expertise</li>
+                                <li>Learning style accommodations</li>
+                                <li>Available resources and materials</li>
+                                <li>Assessment criteria and rubrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">70-85%</div>
+                                <div class="metric-label">Planning Time</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Standards Alignment</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">4-6 hours</div>
+                                <div class="metric-label">Lesson Development</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Generation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">❓</div>
+                        <div>
+                            <div class="card-title">Quiz Generation</div>
+                            <div class="card-subtitle">Assessment Creation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Automatically generate quizzes and assessments with varying difficulty levels and question types.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Question Generation</span>
+                            <span class="tech-tag">Difficulty Scaling</span>
+                            <span class="tech-tag">Answer Key Creation</span>
+                            <span class="tech-tag">Assessment Standards</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Content Analysis → Question Types → Difficulty Levels → Answer Generation → Review → Deployment</div>
+                            <div class="architecture-item">Learning Objectives → Bloom's Taxonomy → Question Bank → Assessment Design → Scoring → Feedback</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Curriculum content and topics</li>
+                                <li>Learning objectives and outcomes</li>
+                                <li>Question type specifications</li>
+                                <li>Difficulty level guidelines</li>
+                                <li>Answer key requirements</li>
+                                <li>Assessment validation criteria</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Question Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Creation Time</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">95-99%</div>
+                                <div class="metric-label">Answer Accuracy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personalized Study Guides -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📚</div>
+                        <div>
+                            <div class="card-title">Personalized Study Guides</div>
+                            <div class="card-subtitle">Adaptive Learning Materials</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Create customized study guides based on individual student needs, learning styles, and performance data.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Personalization</span>
+                            <span class="tech-tag">Learning Analytics</span>
+                            <span class="tech-tag">Content Adaptation</span>
+                            <span class="tech-tag">Progress Tracking</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Student Profile → Performance Analysis → Content Customization → Guide Generation → Progress Monitoring</div>
+                            <div class="architecture-item">Learning Style → Knowledge Gaps → Resource Matching → Study Plan → Outcome Assessment</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Individual student performance data</li>
+                                <li>Learning style preferences</li>
+                                <li>Knowledge gap analysis</li>
+                                <li>Previous assessment results</li>
+                                <li>Study habits and patterns</li>
+                                <li>Content mastery levels</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Personalization</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Study Efficiency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Knowledge Retention</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Essay Feedback -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">✍️</div>
+                        <div>
+                            <div class="card-title">Essay Feedback</div>
+                            <div class="card-subtitle">Writing Assessment</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Provide detailed, constructive feedback on student essays to improve writing skills and academic performance.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Writing Analysis</span>
+                            <span class="tech-tag">Grammar Checking</span>
+                            <span class="tech-tag">Content Evaluation</span>
+                            <span class="tech-tag">Style Improvement</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Essay Submission → Grammar Check → Content Analysis → Structure Review → Feedback Generation → Improvement Suggestions</div>
+                            <div class="architecture-item">Writing Style → Argument Quality → Evidence Use → Organization → Clarity → Recommendations</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Writing rubrics and standards</li>
+                                <li>Grammar and style guidelines</li>
+                                <li>Subject matter expertise</li>
+                                <li>Previous student work</li>
+                                <li>Common writing errors</li>
+                                <li>Improvement strategies</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Feedback Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Writing Improvement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">5-10 minutes</div>
+                                <div class="metric-label">Feedback Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Tutoring Chatbots -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">🤖</div>
+                        <div>
+                            <div class="card-title">AI Tutoring Chatbots</div>
+                            <div class="card-subtitle">24/7 Learning Support</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Provide instant, personalized tutoring support to students through conversational AI interfaces.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Conversational AI</span>
+                            <span class="tech-tag">Knowledge Base</span>
+                            <span class="tech-tag">Adaptive Responses</span>
+                            <span class="tech-tag">Learning Support</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Student Query → Understanding → Knowledge Retrieval → Response Generation → Explanation → Follow-up</div>
+                            <div class="architecture-item">Topic Analysis → Difficulty Assessment → Concept Explanation → Examples → Practice → Progress</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Subject matter knowledge bases</li>
+                                <li>Common student questions</li>
+                                <li>Teaching methodologies</li>
+                                <li>Learning progression models</li>
+                                <li>Interactive examples and exercises</li>
+                                <li>Feedback and improvement data</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Response Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">24/7</div>
+                                <div class="metric-label">Availability</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">3-5 seconds</div>
+                                <div class="metric-label">Response Time</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lecture Summarization -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📋</div>
+                        <div>
+                            <div class="card-title">Lecture Summarization</div>
+                            <div class="card-subtitle">Content Condensation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Automatically generate concise summaries of lectures and educational content for review and study purposes.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Content Analysis</span>
+                            <span class="tech-tag">Key Point Extraction</span>
+                            <span class="tech-tag">Summarization</span>
+                            <span class="tech-tag">Study Aids</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Lecture Content → Key Concept Extraction → Summarization → Study Guide Generation → Review Materials</div>
+                            <div class="architecture-item">Audio/Video → Transcript → Analysis → Highlighting → Condensation → Delivery</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Lecture transcripts and recordings</li>
+                                <li>Key concept identification</li>
+                                <li>Summarization algorithms</li>
+                                <li>Study guide templates</li>
+                                <li>Review material formats</li>
+                                <li>Student feedback on summaries</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Content Retention</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Study Efficiency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">5-10 minutes</div>
+                                <div class="metric-label">Summary Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agentic AI Use Cases -->
+        <div id="agentic" class="content-section">
+            <h2 class="section-title">🤖 Agentic AI Systems</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                Autonomous AI agents that can reason, plan, and execute complex educational workflows and personalized learning experiences
+            </p>
+
+            <div class="card-grid">
+                <!-- Personalized Learning Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🎓</div>
+                        <div>
+                            <div class="card-title">Personalized Learning Agent</div>
+                            <div class="card-subtitle">Adaptive Education</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Provide personalized learning experiences by adapting content, pace, and teaching methods to individual student needs.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Adaptive Learning</span>
+                            <span class="tech-tag">Personalization</span>
+                            <span class="tech-tag">Progress Tracking</span>
+                            <span class="tech-tag">Content Adaptation</span>
+                            <span class="tech-tag">Learning Analytics</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Student Profile → Learning Style → Content Adaptation → Progress Monitoring → Feedback Loop → Optimization</div>
+                            <div class="architecture-item">Performance Data → Difficulty Adjustment → Resource Matching → Engagement Tracking → Personalization</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Individual student profiles</li>
+                                <li>Learning style assessments</li>
+                                <li>Performance tracking data</li>
+                                <li>Content engagement metrics</li>
+                                <li>Progress benchmarks</li>
+                                <li>Feedback and preference data</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">70-85%</div>
+                                <div class="metric-label">Learning Efficiency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Student Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Knowledge Retention</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Advisor Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">👨‍🏫</div>
+                        <div>
+                            <div class="card-title">Academic Advisor Agent</div>
+                            <div class="card-subtitle">Student Guidance</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Provide personalized academic advising and course planning to help students achieve their educational goals.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Academic Planning</span>
+                            <span class="tech-tag">Course Recommendation</span>
+                            <span class="tech-tag">Goal Tracking</span>
+                            <span class="tech-tag">Progress Monitoring</span>
+                            <span class="tech-tag">Career Guidance</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Student Goals → Course Requirements → Schedule Planning → Progress Tracking → Adjustment → Success</div>
+                            <div class="architecture-item">Academic History → Interest Assessment → Pathway Design → Milestone Tracking → Support</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Academic program requirements</li>
+                                <li>Course availability and prerequisites</li>
+                                <li>Student academic history</li>
+                                <li>Career interest assessments</li>
+                                <li>Graduation timelines</li>
+                                <li>Academic support resources</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Graduation On-time</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Student Satisfaction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Academic Performance</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admissions Processing Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">📋</div>
+                        <div>
+                            <div class="card-title">Admissions Processing</div>
+                            <div class="card-subtitle">Application Management</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Automate and optimize the admissions process including application review, document verification, and candidate evaluation.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Application Processing</span>
+                            <span class="tech-tag">Document Verification</span>
+                            <span class="tech-tag">Candidate Evaluation</span>
+                            <span class="tech-tag">Workflow Automation</span>
+                            <span class="tech-tag">Decision Support</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Application Receipt → Document Verification → Academic Review → Holistic Evaluation → Decision → Communication</div>
+                            <div class="architecture-item">Data Extraction → Requirement Check → Scoring → Ranking → Selection → Notification</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Application requirements and criteria</li>
+                                <li>Academic transcript standards</li>
+                                <li>Standardized test score benchmarks</li>
+                                <li>Extracurricular activity evaluation</li>
+                                <li>Personal statement analysis</li>
+                                <li>Diversity and inclusion considerations</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">70-85%</div>
+                                <div class="metric-label">Processing Time</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Admissions Staff Workload</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curriculum Design Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">📖</div>
+                        <div>
+                            <div class="card-title">Curriculum Design</div>
+                            <div class="card-subtitle">Educational Planning</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Design and optimize curricula based on learning outcomes, industry standards, and student needs.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Curriculum Development</span>
+                            <span class="tech-tag">Standards Alignment</span>
+                            <span class="tech-tag">Learning Outcomes</span>
+                            <span class="tech-tag">Content Sequencing</span>
+                            <span class="tech-tag">Assessment Design</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Learning Goals → Content Selection → Sequencing → Assessment Design → Resource Allocation → Implementation</div>
+                            <div class="architecture-item">Standards Review → Gap Analysis → Curriculum Mapping → Integration → Evaluation → Revision</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Educational standards and frameworks</li>
+                                <li>Industry skill requirements</li>
+                                <li>Student learning outcomes</li>
+                                <li>Available resources and materials</li>
+                                <li>Faculty expertise and capacity</li>
+                                <li>Assessment and evaluation criteria</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Curriculum Development Time</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Standards Alignment</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Student Learning Outcomes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Automated Grading Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">📝</div>
+                        <div>
+                            <div class="card-title">Automated Grading</div>
+                            <div class="card-subtitle">Assessment Automation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Automate the grading process for assignments, quizzes, and exams while providing detailed feedback to students.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Automated Assessment</span>
+                            <span class="tech-tag">Rubric-Based Grading</span>
+                            <span class="tech-tag">Feedback Generation</span>
+                            <span class="tech-tag">Quality Assurance</span>
+                            <span class="tech-tag">Performance Analytics</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Assignment Submission → Rubric Application → Automated Grading → Feedback Generation → Quality Review → Student Delivery</div>
+                            <div class="architecture-item">Answer Analysis → Scoring → Error Detection → Improvement Suggestions → Grade Recording → Reporting</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Grading rubrics and criteria</li>
+                                <li>Answer key databases</li>
+                                <li>Common error patterns</li>
+                                <li>Feedback templates</li>
+                                <li>Quality assurance protocols</li>
+                                <li>Grade distribution standards</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-95%</div>
+                                <div class="metric-label">Grading Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Grading Time</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Feedback Quality</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Career Path Planning Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🎯</div>
+                        <div>
+                            <div class="card-title">Career Path Planning</div>
+                            <div class="card-subtitle">Professional Development</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Guide students through career exploration and planning based on their skills, interests, and market opportunities.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Career Assessment</span>
+                            <span class="tech-tag">Market Analysis</span>
+                            <span class="tech-tag">Skill Matching</span>
+                            <span class="tech-tag">Pathway Planning</span>
+                            <span class="tech-tag">Opportunity Matching</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Student Profile → Interest Assessment → Market Analysis → Career Matching → Pathway Design → Implementation</div>
+                            <div class="architecture-item">Skills Inventory → Industry Research → Opportunity Identification → Goal Setting → Action Plan → Progress</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Industry job market data</li>
+                                <li>Required skill sets and qualifications</li>
+                                <li>Salary and growth projections</li>
+                                <li>Student interest and aptitude assessments</li>
+                                <li>Educational pathway requirements</li>
+                                <li>Networking and opportunity databases</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Career Match Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Job Placement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Career Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>✨ Built with cutting-edge AI technologies for the future of education and learning</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                Note: Implementation requires careful consideration of educational standards, student privacy, and pedagogical effectiveness
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Find and activate the clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

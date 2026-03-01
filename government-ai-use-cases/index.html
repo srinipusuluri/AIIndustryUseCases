@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in Government & Public Sector - Comprehensive Use Cases</title>
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #ef4444;
+            --accent-color: #10b981;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --government-blue: #6366f1;
+            --public-red: #ef4444;
+            --service-green: #10b981;
+            --justice-gold: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-color), #0b1220);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--government-blue), var(--public-red), var(--service-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .nav-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-color: var(--primary-color);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(45deg, var(--government-blue), var(--public-red));
+            border: none;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--government-blue), var(--public-red), var(--service-green));
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .icon.ml { background: rgba(99, 102, 241, 0.2); color: var(--government-blue); }
+        .icon.gen { background: rgba(16, 185, 129, 0.2); color: var(--service-green); }
+        .icon.ag { background: rgba(239, 68, 68, 0.2); color: var(--public-red); }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-content {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, var(--government-blue), var(--public-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(255,255,255,0.1);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .architecture-diagram {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .architecture-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .architecture-item::before {
+            content: '→';
+            color: var(--government-blue);
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(16, 185, 129, 0.1));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-title {
+            color: var(--government-blue);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-card {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--government-blue);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .government-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .public-badge {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            margin-left: 0.5rem;
+        }
+
+        .service-badge {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏛 AI in Government & Public Sector</h1>
+            <p class="subtitle">Comprehensive Guide to Machine Learning, Generative AI, and Agentic Systems in Public Administration & Civic Services</p>
+        </header>
+
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showSection('ml')">🔮 ML / Predictive</button>
+            <button class="nav-btn" onclick="showSection('gen')">✍️ Generative AI</button>
+            <button class="nav-btn" onclick="showSection('agentic')">🤖 Agentic AI</button>
+        </div>
+
+        <!-- ML / Predictive Use Cases -->
+        <div id="ml" class="content-section active">
+            <h2 class="section-title">🔮 Machine Learning & Predictive Analytics</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                Advanced statistical models and algorithms for public service optimization, policy effectiveness, and citizen welfare
+            </p>
+
+            <div class="card-grid">
+                <!-- Tax Fraud Detection -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">💰</div>
+                        <div>
+                            <div class="card-title">Tax Fraud Detection</div>
+                            <div class="card-subtitle">Revenue Protection</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Identify fraudulent tax filings and evasion patterns to protect government revenue and ensure fair tax compliance.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Fraud Detection</span>
+                            <span class="tech-tag">Anomaly Analysis</span>
+                            <span class="tech-tag">Risk Scoring</span>
+                            <span class="tech-tag">Pattern Recognition</span>
+                            <span class="tech-tag">Compliance Monitoring</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Tax Returns → Pattern Analysis → Risk Assessment → Fraud Detection → Investigation → Recovery</div>
+                            <div class="architecture-item">Historical Data → Behavioral Analysis → Anomaly Detection → Risk Scoring → Enforcement</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Historical tax return data</li>
+                                <li>Known fraud patterns</li>
+                                <li>Income verification records</li>
+                                <li>Expense analysis data</li>
+                                <li>Previous audit results</li>
+                                <li>Industry benchmarks</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Fraud Detection</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Revenue Recovery</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Investigation Efficiency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Crime Pattern Analysis -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">👮</div>
+                        <div>
+                            <div class="card-title">Crime Pattern Analysis</div>
+                            <div class="card-subtitle">Public Safety</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Analyze crime data to identify patterns, predict hotspots, and optimize law enforcement resource allocation.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Crime Analytics</span>
+                            <span class="tech-tag">Hotspot Prediction</span>
+                            <span class="tech-tag">Resource Allocation</span>
+                            <span class="tech-tag">Pattern Recognition</span>
+                            <span class="tech-tag">Prevention Planning</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Crime Reports → Pattern Analysis → Hotspot Prediction → Resource Deployment → Prevention → Monitoring</div>
+                            <div class="architecture-item">Historical Data → Temporal Analysis → Spatial Mapping → Risk Assessment → Strategy</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Historical crime incident data</li>
+                                <li>Geographic information systems</li>
+                                <li>Time and location patterns</li>
+                                <li>Socioeconomic indicators</li>
+                                <li>Weather and environmental factors</li>
+                                <li>Law enforcement deployment data</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Pattern Detection</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">25-40%</div>
+                                <div class="metric-label">Response Time</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">15-30%</div>
+                                <div class="metric-label">Crime Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Budget Forecasting -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">📊</div>
+                        <div>
+                            <div class="card-title">Budget Forecasting</div>
+                            <div class="card-subtitle">Financial Planning</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict government revenue and expenditure patterns to optimize budget allocation and fiscal planning.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Financial Forecasting</span>
+                            <span class="tech-tag">Revenue Prediction</span>
+                            <span class="tech-tag">Expenditure Analysis</span>
+                            <span class="tech-tag">Economic Modeling</span>
+                            <span class="tech-tag">Resource Allocation</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Economic Indicators → Revenue Forecast → Expenditure Analysis → Budget Planning → Allocation → Monitoring</div>
+                            <div class="architecture-item">Historical Data → Trend Analysis → Scenario Planning → Fiscal Policy → Implementation</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Historical budget data</li>
+                                <li>Economic indicators</li>
+                                <li>Tax revenue patterns</li>
+                                <li>Expenditure trends</li>
+                                <li>Population demographics</li>
+                                <li>Policy impact data</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Forecast Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">20-40%</div>
+                                <div class="metric-label">Budget Efficiency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Resource Optimization</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Traffic Congestion Prediction -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🚗</div>
+                        <div>
+                            <div class="card-title">Traffic Congestion Prediction</div>
+                            <div class="card-subtitle">Urban Mobility</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict traffic patterns and congestion to optimize traffic management and improve urban mobility.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Traffic Analytics</span>
+                            <span class="tech-tag">Congestion Prediction</span>
+                            <span class="tech-tag">Route Optimization</span>
+                            <span class="tech-tag">Infrastructure Planning</span>
+                            <span class="tech-tag">Real-time Management</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Traffic Sensors → Pattern Analysis → Congestion Prediction → Traffic Management → Optimization → Monitoring</div>
+                            <div class="architecture-item">Historical Data → Weather Impact → Event Scheduling → Flow Optimization → Infrastructure</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Traffic sensor data</li>
+                                <li>Historical traffic patterns</li>
+                                <li>Weather conditions</li>
+                                <li>Event schedules</li>
+                                <li>Construction data</li>
+                                <li>Public transportation schedules</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Congestion Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">25-40%</div>
+                                <div class="metric-label">Travel Time</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Fuel Consumption</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Public Health Risk Modeling -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🏥</div>
+                        <div>
+                            <div class="card-title">Public Health Risk Modeling</div>
+                            <div class="card-subtitle">Disease Prevention</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Model and predict public health risks to enable proactive interventions and optimize healthcare resource allocation.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Epidemiological Modeling</span>
+                            <span class="tech-tag">Risk Assessment</span>
+                            <span class="tech-tag">Disease Surveillance</span>
+                            <span class="tech-tag">Resource Planning</span>
+                            <span class="tech-tag">Prevention Strategies</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Health Data → Risk Analysis → Outbreak Prediction → Resource Allocation → Intervention → Monitoring</div>
+                            <div class="architecture-item">Population Health → Environmental Factors → Disease Patterns → Prevention → Response</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Healthcare utilization data</li>
+                                <li>Disease surveillance reports</li>
+                                <li>Population demographics</li>
+                                <li>Environmental health data</li>
+                                <li>Vaccination records</li>
+                                <li>Healthcare facility capacity</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Risk Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Prevention Effectiveness</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Healthcare Costs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infrastructure Maintenance Prediction -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🏗️</div>
+                        <div>
+                            <div class="card-title">Infrastructure Maintenance</div>
+                            <div class="card-subtitle">Asset Management</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict infrastructure maintenance needs to optimize repair schedules and extend asset lifespan.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Predictive Maintenance</span>
+                            <span class="tech-tag">Asset Management</span>
+                            <span class="tech-tag">Condition Monitoring</span>
+                            <span class="tech-tag">Lifecycle Analysis</span>
+                            <span class="tech-tag">Resource Planning</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Sensor Data → Condition Analysis → Maintenance Prediction → Scheduling → Repair → Monitoring</div>
+                            <div class="architecture-item">Usage Patterns → Environmental Impact → Deterioration → Intervention → Optimization</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Infrastructure sensor data</li>
+                                <li>Historical maintenance records</li>
+                                <li>Environmental conditions</li>
+                                <li>Usage patterns</li>
+                                <li>Material specifications</li>
+                                <li>Inspection reports</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Failure Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Maintenance Costs</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">25-45%</div>
+                                <div class="metric-label">Asset Lifespan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generative AI Use Cases -->
+        <div id="gen" class="content-section">
+            <h2 class="section-title">✍️ Generative AI Applications</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                AI-powered content creation, policy development, and citizen service automation for modern government operations
+            </p>
+
+            <div class="card-grid">
+                <!-- Policy Draft Assistance -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📜</div>
+                        <div>
+                            <div class="card-title">Policy Draft Assistance</div>
+                            <div class="card-subtitle">Legislative Support</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Assist policymakers in drafting legislation and regulations with comprehensive analysis and best practice recommendations.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Policy Analysis</span>
+                            <span class="tech-tag">Legislative Drafting</span>
+                            <span class="tech-tag">Impact Assessment</span>
+                            <span class="tech-tag">Best Practices</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Policy Requirements → Research → Drafting → Review → Revision → Finalization</div>
+                            <div class="architecture-item">Legal Framework → Stakeholder Input → Impact Analysis → Implementation → Monitoring</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Existing legislation database</li>
+                                <li>Policy impact studies</li>
+                                <li>Stakeholder feedback</li>
+                                <li>International best practices</li>
+                                <li>Legal precedents</li>
+                                <li>Economic impact data</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Draft Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Drafting Time</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">4-6 hours</div>
+                                <div class="metric-label">Policy Development</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Public Communication Generation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📢</div>
+                        <div>
+                            <div class="card-title">Public Communication</div>
+                            <div class="card-subtitle">Citizen Engagement</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate clear, accessible public communications and announcements tailored to diverse citizen needs and preferences.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Communication Strategy</span>
+                            <span class="tech-tag">Accessibility</span>
+                            <span class="tech-tag">Multilingual Support</span>
+                            <span class="tech-tag">Public Relations</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Message Requirements → Audience Analysis → Content Creation → Review → Distribution → Feedback</div>
+                            <div class="architecture-item">Policy Information → Simplification → Localization → Accessibility → Engagement</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Citizen demographic data</li>
+                                <li>Communication preferences</li>
+                                <li>Accessibility requirements</li>
+                                <li>Language diversity</li>
+                                <li>Feedback mechanisms</li>
+                                <li>Communication channels</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Communication Clarity</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-85%</div>
+                                <div class="metric-label">Citizen Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Accessibility</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Citizen Service Chatbots -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">🤖</div>
+                        <div>
+                            <div class="card-title">Citizen Service Chatbots</div>
+                            <div class="card-subtitle">Government Support</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Provide 24/7 citizen support for government services, applications, and information through conversational AI interfaces.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Government Services</span>
+                            <span class="tech-tag">Citizen Support</span>
+                            <span class="tech-tag">Service Integration</span>
+                            <span class="tech-tag">Multilingual Support</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Citizen Query → Service Identification → Information Retrieval → Response Generation → Service Integration → Follow-up</div>
+                            <div class="architecture-item">Application Support → Document Guidance → Status Updates → Problem Resolution → Satisfaction</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Government service databases</li>
+                                <li>Application procedures</li>
+                                <li>Citizen frequently asked questions</li>
+                                <li>Service status information</li>
+                                <li>Document requirements</li>
+                                <li>Multilingual content</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Query Resolution</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">24/7</div>
+                                <div class="metric-label">Availability</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">3-5 seconds</div>
+                                <div class="metric-label">Response Time</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legislative Summarization -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📋</div>
+                        <div>
+                            <div class="card-title">Legislative Summarization</div>
+                            <div class="card-subtitle">Policy Analysis</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate comprehensive summaries of complex legislation and policy documents for stakeholders and the public.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Document Analysis</span>
+                            <span class="tech-tag">Summarization</span>
+                            <span class="tech-tag">Impact Assessment</span>
+                            <span class="tech-tag">Stakeholder Communication</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Legislation → Analysis → Key Points → Impact Assessment → Summary → Distribution</div>
+                            <div class="architecture-item">Legal Text → Simplification → Stakeholder Analysis → Communication → Feedback</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Legislative text databases</li>
+                                <li>Legal terminology</li>
+                                <li>Policy impact frameworks</li>
+                                <li>Stakeholder analysis</li>
+                                <li>Communication requirements</li>
+                                <li>Feedback mechanisms</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Summary Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Comprehension</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">5-10 minutes</div>
+                                <div class="metric-label">Summarization Time</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compliance Documentation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">✅</div>
+                        <div>
+                            <div class="card-title">Compliance Documentation</div>
+                            <div class="card-subtitle">Regulatory Requirements</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate comprehensive compliance documentation and regulatory reports for government agencies and public institutions.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Regulatory Analysis</span>
+                            <span class="tech-tag">Compliance Reporting</span>
+                            <span class="tech-tag">Audit Documentation</span>
+                            <span class="tech-tag">Policy Alignment</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Regulatory Requirements → Compliance Analysis → Documentation → Review → Approval → Submission</div>
+                            <div class="architecture-item">Policy Review → Gap Analysis → Implementation → Monitoring → Reporting → Improvement</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Regulatory frameworks</li>
+                                <li>Compliance standards</li>
+                                <li>Audit requirements</li>
+                                <li>Policy documents</li>
+                                <li>Implementation guidelines</li>
+                                <li>Reporting templates</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Compliance Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-85%</div>
+                                <div class="metric-label">Documentation Efficiency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">6-8 hours</div>
+                                <div class="metric-label">Report Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Budget Report Drafting -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">💰</div>
+                        <div>
+                            <div class="card-title">Budget Report Drafting</div>
+                            <div class="card-subtitle">Financial Reporting</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate comprehensive budget reports and financial analyses for government transparency and accountability.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Financial Analysis</span>
+                            <span class="tech-tag">Budget Reporting</span>
+                            <span class="tech-tag">Transparency</span>
+                            <span class="tech-tag">Accountability</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Financial Data → Analysis → Report Generation → Review → Approval → Publication</div>
+                            <div class="architecture-item">Budget Allocation → Expenditure Tracking → Performance Analysis → Recommendations → Reporting</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Financial transaction data</li>
+                                <li>Budget allocation records</li>
+                                <li>Expenditure tracking</li>
+                                <li>Performance metrics</li>
+                                <li>Accounting standards</li>
+                                <li>Reporting requirements</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Report Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Reporting Efficiency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">4-6 hours</div>
+                                <div class="metric-label">Report Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agentic AI Use Cases -->
+        <div id="agentic" class="content-section">
+            <h2 class="section-title">🤖 Agentic AI Systems</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                Autonomous AI agents that can reason, plan, and execute complex government operations and public service workflows
+            </p>
+
+            <div class="card-grid">
+                <!-- Citizen Service Automation Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🤖</div>
+                        <div>
+                            <div class="card-title">Citizen Service Automation</div>
+                            <div class="card-subtitle">Public Service Delivery</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Automate end-to-end citizen service delivery including applications, renewals, and government interactions.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Service Automation</span>
+                            <span class="tech-tag">Workflow Management</span>
+                            <span class="tech-tag">Citizen Interaction</span>
+                            <span class="tech-tag">Process Optimization</span>
+                            <span class="tech-tag">Quality Assurance</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Citizen Request → Service Identification → Process Automation → Status Tracking → Completion → Feedback</div>
+                            <div class="architecture-item">Application Processing → Document Verification → Approval Workflow → Service Delivery → Monitoring</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Citizen service databases</li>
+                                <li>Application workflows</li>
+                                <li>Document requirements</li>
+                                <li>Approval processes</li>
+                                <li>Service standards</li>
+                                <li>Feedback mechanisms</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Service Completion</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Processing Time</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Citizen Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits Processing Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">💰</div>
+                        <div>
+                            <div class="card-title">Benefits Processing</div>
+                            <div class="card-subtitle">Social Services</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Automate the processing of government benefits and social services applications with fraud detection and eligibility verification.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Benefits Management</span>
+                            <span class="tech-tag">Eligibility Verification</span>
+                            <span class="tech-tag">Fraud Detection</span>
+                            <span class="tech-tag">Payment Processing</span>
+                            <span class="tech-tag">Case Management</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Application Submission → Eligibility Check → Fraud Detection → Approval Process → Payment → Monitoring</div>
+                            <div class="architecture-item">Document Verification → Income Assessment → Benefit Calculation → Disbursement → Tracking</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Eligibility criteria databases</li>
+                                <li>Income verification systems</li>
+                                <li>Fraud detection algorithms</li>
+                                <li>Payment processing systems</li>
+                                <li>Case management workflows</li>
+                                <li>Appeal processes</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Processing Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Processing Speed</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Fraud Prevention</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart City Orchestration Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🏙️</div>
+                        <div>
+                            <div class="card-title">Smart City Orchestration</div>
+                            <div class="card-subtitle">Urban Management</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Coordinate and optimize all smart city systems including transportation, utilities, public safety, and infrastructure management.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Smart City</span>
+                            <span class="tech-tag">IoT Integration</span>
+                            <span class="tech-tag">Urban Planning</span>
+                            <span class="tech-tag">Resource Management</span>
+                            <span class="tech-tag">Real-time Optimization</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Sensor Networks → Data Integration → Analysis → Optimization → Coordination → Implementation</div>
+                            <div class="architecture-item">Transportation → Utilities → Safety → Infrastructure → Environment → Services</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>IoT sensor networks</li>
+                                <li>Infrastructure monitoring</li>
+                                <li>Utility management systems</li>
+                                <li>Transportation networks</li>
+                                <li>Public safety systems</li>
+                                <li>Environmental monitoring</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Resource Efficiency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">25-45%</div>
+                                <div class="metric-label">Energy Consumption</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Service Quality</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Disaster Response Coordination Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">⚠️</div>
+                        <div>
+                            <div class="card-title">Disaster Response Coordination</div>
+                            <div class="card-subtitle">Emergency Management</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Coordinate disaster response efforts across multiple agencies, optimize resource allocation, and manage emergency operations.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Emergency Management</span>
+                            <span class="tech-tag">Resource Coordination</span>
+                            <span class="tech-tag">Multi-agency Integration</span>
+                            <span class="tech-tag">Real-time Response</span>
+                            <span class="tech-tag">Crisis Management</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Disaster Detection → Alert Generation → Resource Mobilization → Coordination → Response → Recovery</div>
+                            <div class="architecture-item">Agency Integration → Communication → Logistics → Operations → Monitoring → Assessment</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Emergency response protocols</li>
+                                <li>Resource availability databases</li>
+                                <li>Agency coordination systems</li>
+                                <li>Communication networks</li>
+                                <li>Logistics management</li>
+                                <li>Recovery planning</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Response Coordination</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Response Time</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Resource Optimization</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infrastructure Monitoring Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🏗️</div>
+                        <div>
+                            <div class="card-title">Infrastructure Monitoring</div>
+                            <div class="card-subtitle">Asset Surveillance</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Continuously monitor critical infrastructure including bridges, roads, utilities, and public buildings for safety and maintenance needs.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Infrastructure Monitoring</span>
+                            <span class="tech-tag">Sensor Integration</span>
+                            <span class="tech-tag">Predictive Maintenance</span>
+                            <span class="tech-tag">Safety Analysis</span>
+                            <span class="tech-tag">Alert Systems</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Sensor Data → Analysis → Anomaly Detection → Alert Generation → Maintenance Planning → Repair</div>
+                            <div class="architecture-item">Structural Monitoring → Environmental Impact → Usage Patterns → Risk Assessment → Intervention</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Infrastructure sensor networks</li>
+                                <li>Structural health monitoring</li>
+                                <li>Environmental condition data</li>
+                                <li>Usage pattern analysis</li>
+                                <li>Maintenance history</li>
+                                <li>Safety standards</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Issue Detection</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Maintenance Efficiency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Safety Incidents</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Multi-agency Coordination Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🤝</div>
+                        <div>
+                            <div class="card-title">Multi-agency Coordination</div>
+                            <div class="card-subtitle">Interagency Collaboration</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Facilitate seamless coordination and information sharing between multiple government agencies for complex operations and policy implementation.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Interagency Coordination</span>
+                            <span class="tech-tag">Information Sharing</span>
+                            <span class="tech-tag">Policy Implementation</span>
+                            <span class="tech-tag">Resource Coordination</span>
+                            <span class="tech-tag">Communication Integration</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Agency Requirements → Information Sharing → Coordination Planning → Resource Allocation → Implementation → Monitoring</div>
+                            <div class="architecture-item">Policy Goals → Agency Roles → Communication → Execution → Evaluation → Adjustment</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Agency capabilities and resources</li>
+                                <li>Communication protocols</li>
+                                <li>Policy objectives</li>
+                                <li>Coordination frameworks</li>
+                                <li>Information sharing systems</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Coordination Efficiency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Implementation Speed</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Resource Duplication</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>✨ Built with cutting-edge AI technologies for the future of public service and governance</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                Note: Implementation requires careful consideration of data privacy, transparency, and democratic accountability
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Find and activate the clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

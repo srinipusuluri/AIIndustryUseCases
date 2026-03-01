@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in Gaming - Comprehensive Use Cases</title>
+    <style>
+        :root {
+            --primary-color: #8b5cf6;
+            --secondary-color: #f59e0b;
+            --accent-color: #10b981;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --gaming-purple: #8b5cf6;
+            --controller-orange: #f59e0b;
+            --game-blue: #3b82f6;
+            --pixel-green: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-color), #0b1220);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--gaming-purple), var(--controller-orange), var(--game-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .nav-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-color: var(--primary-color);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(45deg, var(--gaming-purple), var(--game-blue));
+            border: none;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gaming-purple), var(--game-blue), var(--controller-orange));
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .icon.ml { background: rgba(139, 92, 246, 0.2); color: var(--gaming-purple); }
+        .icon.gen { background: rgba(245, 158, 11, 0.2); color: var(--controller-orange); }
+        .icon.ag { background: rgba(59, 130, 246, 0.2); color: var(--game-blue); }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-content {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, var(--gaming-purple), var(--game-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(255,255,255,0.1);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .architecture-diagram {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .architecture-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .architecture-item::before {
+            content: '→';
+            color: var(--gaming-purple);
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-title {
+            color: var(--gaming-purple);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-card {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gaming-purple);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .gaming-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .controller-badge {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            margin-left: 0.5rem;
+        }
+
+        .game-badge {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 AI in Gaming</h1>
+            <p class="subtitle">Comprehensive Guide to Machine Learning, Generative AI, and Agentic Systems in Game Development, Player Experience, and Live Operations</p>
+        </header>
+
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showSection('ml')">🔮 ML / Predictive</button>
+            <button class="nav-btn" onclick="showSection('gen')">✍️ Generative AI</button>
+            <button class="nav-btn" onclick="showSection('agentic')">🤖 Agentic AI</button>
+        </div>
+
+        <!-- ML / Predictive Use Cases -->
+        <div id="ml" class="content-section active">
+            <h2 class="section-title">🔮 Machine Learning & Predictive Analytics</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                Advanced statistical models and algorithms for player behavior analysis, game optimization, and revenue management in gaming
+            </p>
+
+            <div class="card-grid">
+                <!-- Player Churn Prediction -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">📊</div>
+                        <div>
+                            <div class="card-title">Player Churn Prediction</div>
+                            <div class="card-subtitle">Retention Analysis</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict which players are likely to stop playing the game to implement targeted retention strategies and improve player lifetime value.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Churn Analysis</span>
+                            <span class="tech-tag">Player Behavior</span>
+                            <span class="tech-tag">Retention Modeling</span>
+                            <span class="tech-tag">Predictive Analytics</span>
+                            <span class="tech-tag">Player Lifecycle</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Player Data → Behavior Analysis → Churn Prediction → Retention Strategy → Engagement → Retention</div>
+                            <div class="architecture-item">Game Analytics → Pattern Recognition → Churn Modeling → Intervention → Results → Optimization</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Player session data</li>
+                                <li>Gameplay patterns</li>
+                                <li>Engagement metrics</li>
+                                <li>Purchase history</li>
+                                <li>Social interactions</li>
+                                <li>Feedback and reviews</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Churn Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Retention Improvement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Player Lifetime Value</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Engagement Modeling -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🎮</div>
+                        <div>
+                            <div class="card-title">Engagement Modeling</div>
+                            <div class="card-subtitle">Player Experience</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Model player engagement patterns to optimize game design, content delivery, and user experience for maximum player satisfaction.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Engagement Analysis</span>
+                            <span class="tech-tag">Player Experience</span>
+                            <span class="tech-tag">Game Design</span>
+                            <span class="tech-tag">Content Optimization</span>
+                            <span class="tech-tag">User Experience</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Player Data → Engagement Analysis → Pattern Recognition → Optimization → Content Delivery → Experience</div>
+                            <div class="architecture-item">Game Metrics → Engagement Modeling → Design Optimization → Implementation → Testing → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Player interaction data</li>
+                                <li>Game session metrics</li>
+                                <li>Content consumption</li>
+                                <li>Feedback ratings</li>
+                                <li>Progression patterns</li>
+                                <li>Social engagement</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Engagement Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Player Satisfaction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Retention Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Matchmaking Optimization -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🎯</div>
+                        <div>
+                            <div class="card-title">Matchmaking Optimization</div>
+                            <div class="card-subtitle">Player Matching</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Optimize player matchmaking algorithms to create balanced, competitive, and enjoyable matches based on skill, preferences, and connection quality.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Matchmaking</span>
+                            <span class="tech-tag">Skill Analysis</span>
+                            <span class="tech-tag">Player Preferences</span>
+                            <span class="tech-tag">Connection Quality</span>
+                            <span class="tech-tag">Competitive Balance</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Player Data → Skill Assessment → Preference Analysis → Matchmaking → Quality Assessment → Optimization</div>
+                            <div class="architecture-item">Skill Ranking → Player Preferences → Match Quality → Optimization → Results → Adjustment</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Player skill ratings</li>
+                                <li>Game performance data</li>
+                                <li>Connection quality metrics</li>
+                                <li>Player preferences</li>
+                                <li>Match history</li>
+                                <li>Feedback ratings</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Match Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Player Satisfaction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Match Balance</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Revenue Forecasting -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">💰</div>
+                        <div>
+                            <div class="card-title">Revenue Forecasting</div>
+                            <div class="card-subtitle">Monetization Analysis</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict game revenue from various sources including in-app purchases, ads, and subscriptions to optimize monetization strategies.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Revenue Analysis</span>
+                            <span class="tech-tag">Monetization Strategy</span>
+                            <span class="tech-tag">Market Forecasting</span>
+                            <span class="tech-tag">Player Spending</span>
+                            <span class="tech-tag">Business Intelligence</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Market Data → Revenue Analysis → Forecasting → Strategy → Implementation → Results</div>
+                            <div class="architecture-item">Player Data → Spending Patterns → Revenue Prediction → Monetization → Optimization → Growth</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Historical revenue data</li>
+                                <li>Player spending patterns</li>
+                                <li>Market trends</li>
+                                <li>Game performance metrics</li>
+                                <li>Competitor analysis</li>
+                                <li>Economic indicators</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">75-85%</div>
+                                <div class="metric-label">Revenue Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Monetization Optimization</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Revenue Growth</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cheat Detection -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">⚠️</div>
+                        <div>
+                            <div class="card-title">Cheat Detection</div>
+                            <div class="card-subtitle">Security Analysis</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Detect and prevent cheating behaviors in games using behavioral analysis and anomaly detection to maintain fair play.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Security Analysis</span>
+                            <span class="tech-tag">Anomaly Detection</span>
+                            <span class="tech-tag">Behavioral Analysis</span>
+                            <span class="tech-tag">Fair Play</span>
+                            <span class="tech-tag">Anti-cheat</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Game Data → Behavior Analysis → Anomaly Detection → Cheat Identification → Prevention → Monitoring</div>
+                            <div class="architecture-item">Player Actions → Pattern Analysis → Detection → Response → Prevention → Security</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Player behavior patterns</li>
+                                <li>Game action logs</li>
+                                <li>Performance anomalies</li>
+                                <li>Known cheat signatures</li>
+                                <li>Network traffic data</li>
+                                <li>Hardware information</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Cheat Detection</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">False Positive Reduction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Fair Play Maintenance</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Ranking Prediction -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🏆</div>
+                        <div>
+                            <div class="card-title">Skill Ranking</div>
+                            <div class="card-subtitle">Player Assessment</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict and optimize player skill rankings using performance data and machine learning to ensure accurate and fair competitive ladders.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Skill Assessment</span>
+                            <span class="tech-tag">Ranking Systems</span>
+                            <span class="tech-tag">Performance Analysis</span>
+                            <span class="tech-tag">Competitive Balance</span>
+                            <span class="tech-tag">Player Development</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Performance Data → Skill Analysis → Ranking → Optimization → Competition → Results</div>
+                            <div class="architecture-item">Player Metrics → Assessment → Ranking → Balance → Competition → Improvement</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Player performance metrics</li>
+                                <li>Game statistics</li>
+                                <li>Match outcomes</li>
+                                <li>Progression data</li>
+                                <li>Competitive history</li>
+                                <li>Skill development patterns</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Ranking Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Competitive Balance</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Player Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generative AI Use Cases -->
+        <div id="gen" class="content-section">
+            <h2 class="section-title">✍️ Generative AI Applications</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                AI-powered content creation, storytelling, and communication for game development, player engagement, and community management
+            </p>
+
+            <div class="card-grid">
+                <!-- Game Storyline Creation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📖</div>
+                        <div>
+                            <div class="card-title">Game Storyline</div>
+                            <div class="card-subtitle">Narrative Design</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate compelling game storylines, plot twists, and narrative arcs that adapt to player choices and create immersive gaming experiences.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Storyline Generation</span>
+                            <span class="tech-tag">Narrative Design</span>
+                            <span class="tech-tag">Interactive Storytelling</span>
+                            <span class="tech-tag">Branching Narratives</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Game Concept → Story Framework → Character Development → Plot Generation → Branching → Integration</div>
+                            <div class="architecture-item">Narrative Design → Story Generation → Dialogue → Integration → Testing → Polish</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Game genre and theme</li>
+                                <li>Target audience preferences</li>
+                                <li>Character archetypes</li>
+                                <li>World-building elements</li>
+                                <li>Plot structure templates</li>
+                                <li>Player choice integration</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Story Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Player Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">4-6 hours</div>
+                                <div class="metric-label">Story Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NPC Dialogue Generation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">💬</div>
+                        <div>
+                            <div class="card-title">NPC Dialogue</div>
+                            <div class="card-subtitle">Character Interaction</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate dynamic and context-aware dialogue for non-player characters that enhances immersion and provides meaningful player interactions.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Dialogue Generation</span>
+                            <span class="tech-tag">Character Development</span>
+                            <span class="tech-tag">Context Awareness</span>
+                            <span class="tech-tag">Interactive Dialogue</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Character Profile → Context Analysis → Dialogue Generation → Integration → Testing → Optimization</div>
+                            <div class="architecture-item">NPC Role → Dialogue Tree → Context → Generation → Integration → Polish</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Character personality profiles</li>
+                                <li>Game context and setting</li>
+                                <li>Player interaction history</li>
+                                <li>Dialogue tone and style</li>
+                                <li>Branching conversation paths</li>
+                                <li>Integration requirements</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Dialogue Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Character Immersion</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">6-8 hours</div>
+                                <div class="metric-label">Dialogue Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quest Generation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">🗺️</div>
+                        <div>
+                            <div class="card-title">Quest Generation</div>
+                            <div class="card-subtitle">Mission Design</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate diverse and engaging quests and missions that fit the game world, provide appropriate challenges, and maintain player interest.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Quest Design</span>
+                            <span class="tech-tag">Mission Generation</span>
+                            <span class="tech-tag">Game Balance</span>
+                            <span class="tech-tag">Player Progression</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Game World → Quest Framework → Objective Design → Reward System → Integration → Testing</div>
+                            <div class="architecture-item">Player Level → Quest Generation → Difficulty → Rewards → Integration → Polish</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Game world lore</li>
+                                <li>Player progression system</li>
+                                <li>Quest difficulty scaling</li>
+                                <li>Reward structures</li>
+                                <li>Game mechanics integration</li>
+                                <li>Player preferences</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Quest Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Player Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">5-10 minutes</div>
+                                <div class="metric-label">Quest Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Patch Notes Drafting -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📝</div>
+                        <div>
+                            <div class="card-title">Patch Notes</div>
+                            <div class="card-subtitle">Update Communication</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate comprehensive and player-friendly patch notes that clearly communicate game updates, bug fixes, and new features.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Patch Notes</span>
+                            <span class="tech-tag">Update Communication</span>
+                            <span class="tech-tag">Technical Documentation</span>
+                            <span class="tech-tag">Player Communication</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Update Data → Feature Analysis → Note Generation → Review → Publication → Communication</div>
+                            <div class="architecture-item">Development Changes → Documentation → Communication → Review → Release → Feedback</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Development change logs</li>
+                                <li>Feature descriptions</li>
+                                <li>Bug fix details</li>
+                                <li>Technical specifications</li>
+                                <li>Player impact analysis</li>
+                                <li>Communication guidelines</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Communication Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Player Understanding</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">3-5 minutes</div>
+                                <div class="metric-label">Note Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marketing Content -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📢</div>
+                        <div>
+                            <div class="card-title">Marketing Content</div>
+                            <div class="card-subtitle">Promotional Materials</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate engaging marketing content including trailers, social media posts, and promotional materials to attract and retain players.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Marketing Content</span>
+                            <span class="tech-tag">Promotional Materials</span>
+                            <span class="tech-tag">Social Media</span>
+                            <span class="tech-tag">Player Acquisition</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Game Features → Target Audience → Content Strategy → Generation → Review → Distribution</div>
+                            <div class="architecture-item">Marketing Goals → Content Creation → Channels → Distribution → Engagement → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Game features and highlights</li>
+                                <li>Target audience analysis</li>
+                                <li>Marketing objectives</li>
+                                <li>Brand guidelines</li>
+                                <li>Channel requirements</li>
+                                <li>Competitor analysis</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Content Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-85%</div>
+                                <div class="metric-label">Engagement Rate</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">4-6 hours</div>
+                                <div class="metric-label">Content Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lore Development -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📜</div>
+                        <div>
+                            <div class="card-title">Lore Development</div>
+                            <div class="card-subtitle">World Building</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate rich and consistent game lore, including history, cultures, and world-building elements that enhance the game's immersive experience.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Lore Development</span>
+                            <span class="tech-tag">World Building</span>
+                            <span class="tech-tag">Cultural Design</span>
+                            <span class="tech-tag">Historical Context</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Game Concept → World Framework → Lore Generation → Integration → Consistency → Expansion</div>
+                            <div class="architecture-item">Setting → History → Cultures → Integration → Testing → Polish</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Game setting and theme</li>
+                                <li>Existing lore elements</li>
+                                <li>Cultural references</li>
+                                <li>Historical inspirations</li>
+                                <li>Integration requirements</li>
+                                <li>Consistency guidelines</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Lore Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">World Immersion</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">6-8 hours</div>
+                                <div class="metric-label">Lore Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agentic AI Use Cases -->
+        <div id="agentic" class="content-section">
+            <h2 class="section-title">🤖 Agentic AI Systems</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                Autonomous AI agents that can reason, plan, and execute complex gaming operations and player experience management
+            </p>
+
+            <div class="card-grid">
+                <!-- Dynamic NPC Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🤖</div>
+                        <div>
+                            <div class="card-title">Dynamic NPC</div>
+                            <div class="card-subtitle">Character Intelligence</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Create intelligent NPCs that can adapt their behavior, dialogue, and actions based on player interactions and game context.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">NPC Intelligence</span>
+                            <span class="tech-tag">Behavioral Adaptation</span>
+                            <span class="tech-tag">Context Awareness</span>
+                            <span class="tech-tag">Player Interaction</span>
+                            <span class="tech-tag">Dynamic Responses</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Player Interaction → Context Analysis → Behavior Adaptation → Response Generation → Integration → Learning</div>
+                            <div class="architecture-item">NPC State → Player Input → Decision Making → Action → Feedback → Adaptation</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Player interaction patterns</li>
+                                <li>Game context data</li>
+                                <li>NPC personality profiles</li>
+                                <li>Behavioral rules</li>
+                                <li>Dialogue options</li>
+                                <li>Adaptation algorithms</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">NPC Intelligence</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Player Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Immersion Quality</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Operations Orchestration Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">⚡</div>
+                        <div>
+                            <div class="card-title">Live Operations</div>
+                            <div class="card-subtitle">Game Management</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Automate live game operations including event scheduling, content updates, and player engagement campaigns in real-time.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Live Operations</span>
+                            <span class="tech-tag">Event Management</span>
+                            <span class="tech-tag">Content Updates</span>
+                            <span class="tech-tag">Player Engagement</span>
+                            <span class="tech-tag">Real-time Management</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Player Data → Event Planning → Content Scheduling → Deployment → Monitoring → Optimization</div>
+                            <div class="architecture-item">Operations Data → Planning → Execution → Monitoring → Adjustment → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Player activity patterns</li>
+                                <li>Event performance data</li>
+                                <li>Content preferences</li>
+                                <li>Scheduling requirements</li>
+                                <li>Resource availability</li>
+                                <li>Performance metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Operations Efficiency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Player Engagement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Content Performance</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game Balancing Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">⚖️</div>
+                        <div>
+                            <div class="card-title">Game Balancing</div>
+                            <div class="card-subtitle">Performance Optimization</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Continuously monitor and optimize game balance by analyzing player performance, win rates, and gameplay patterns to ensure fair and engaging experiences.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Game Balancing</span>
+                            <span class="tech-tag">Performance Analysis</span>
+                            <span class="tech-tag">Player Metrics</span>
+                            <span class="tech-tag">Balance Optimization</span>
+                            <span class="tech-tag">Real-time Adjustment</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Game Data → Performance Analysis → Balance Assessment → Adjustment → Testing → Implementation</div>
+                            <div class="architecture-item">Player Metrics → Analysis → Balancing → Testing → Deployment → Monitoring</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Player performance data</li>
+                                <li>Win rate statistics</li>
+                                <li>Gameplay patterns</li>
+                                <li>Balancing parameters</li>
+                                <li>Player feedback</li>
+                                <li>Testing results</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Balance Quality</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Player Satisfaction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">24/7</div>
+                                <div class="metric-label">Real-time Monitoring</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anti-cheat Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🛡️</div>
+                        <div>
+                            <div class="card-title">Anti-cheat</div>
+                            <div class="card-subtitle">Security Management</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Continuously monitor game data and player behavior to detect, prevent, and respond to cheating attempts in real-time.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Anti-cheat Systems</span>
+                            <span class="tech-tag">Behavioral Analysis</span>
+                            <span class="tech-tag">Security Monitoring</span>
+                            <span class="tech-tag">Threat Detection</span>
+                            <span class="tech-tag">Real-time Response</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Game Data → Behavior Analysis → Threat Detection → Response → Prevention → Monitoring</div>
+                            <div class="architecture-item">Security Data → Analysis → Detection → Response → Prevention → Security</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Player behavior patterns</li>
+                                <li>Game data streams</li>
+                                <li>Cheat signatures</li>
+                                <li>Security protocols</li>
+                                <li>Response procedures</li>
+                                <li>Monitoring systems</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Threat Detection</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">False Positive Reduction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">24/7</div>
+                                <div class="metric-label">Security Monitoring</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monetization Optimization Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">💰</div>
+                        <div>
+                            <div class="card-title">Monetization</div>
+                            <div class="card-subtitle">Revenue Management</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Optimize in-game monetization strategies by analyzing player behavior, spending patterns, and market trends to maximize revenue while maintaining player satisfaction.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Monetization Strategy</span>
+                            <span class="tech-tag">Revenue Optimization</span>
+                            <span class="tech-tag">Player Behavior</span>
+                            <span class="tech-tag">Market Analysis</span>
+                            <span class="tech-tag">Pricing Strategy</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Player Data → Spending Analysis → Strategy Optimization → Implementation → Monitoring → Adjustment</div>
+                            <div class="architecture-item">Revenue Data → Analysis → Optimization → Strategy → Execution → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Player spending patterns</li>
+                                <li>Market trends</li>
+                                <li>Game performance data</li>
+                                <li>Competitor analysis</li>
+                                <li>Pricing strategies</li>
+                                <li>Player feedback</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Revenue Optimization</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Player Satisfaction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Revenue Growth</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player Support Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🆘</div>
+                        <div>
+                            <div class="card-title">Player Support</div>
+                            <div class="card-subtitle">Customer Service</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Provide intelligent player support through automated responses, issue resolution, and escalation management to improve player satisfaction and reduce support costs.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Player Support</span>
+                            <span class="tech-tag">Automated Responses</span>
+                            <span class="tech-tag">Issue Resolution</span>
+                            <span class="tech-tag">Customer Service</span>
+                            <span class="tech-tag">Support Automation</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Player Issue → Analysis → Response Generation → Resolution → Escalation → Feedback</div>
+                            <div class="architecture-item">Support Request → Processing → Resolution → Follow-up → Improvement → Results</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Common player issues</li>
+                                <li>Resolution procedures</li>
+                                <li>FAQ databases</li>
+                                <li>Escalation protocols</li>
+                                <li>Player feedback</li>
+                                <li>Support metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Issue Resolution</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-90%</div>
+                                <div class="metric-label">Player Satisfaction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Support Efficiency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>✨ Built with cutting-edge AI technologies for the future of gaming and interactive entertainment</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                Note: Implementation requires careful consideration of player experience, game balance, and ethical AI practices
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Find and activate the clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

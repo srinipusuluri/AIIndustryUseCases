@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in Healthcare - Comprehensive Use Cases</title>
+    <style>
+        :root {
+            --primary-color: #22c55e;
+            --secondary-color: #3b82f6;
+            --accent-color: #f59e0b;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --medical-red: #ef4444;
+            --healing-green: #10b981;
+            --calm-blue: #60a5fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-color), #0b1220);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--healing-green), var(--calm-blue), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .nav-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-color: var(--primary-color);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(45deg, var(--healing-green), var(--calm-blue));
+            border: none;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--healing-green), var(--calm-blue), var(--accent-color));
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .icon.ml { background: rgba(16, 185, 129, 0.2); color: var(--healing-green); }
+        .icon.gen { background: rgba(59, 130, 246, 0.2); color: var(--calm-blue); }
+        .icon.ag { background: rgba(245, 158, 11, 0.2); color: var(--accent-color); }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-content {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, var(--healing-green), var(--calm-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(255,255,255,0.1);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .architecture-diagram {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .architecture-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .architecture-item::before {
+            content: '→';
+            color: var(--healing-green);
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-title {
+            color: var(--healing-green);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-card {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--healing-green);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .medical-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .critical-care-badge {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏥 AI in Healthcare</h1>
+            <p class="subtitle">Comprehensive Guide to Machine Learning, Generative AI, and Agentic Systems in Healthcare & Life Sciences</p>
+        </header>
+
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showSection('ml')">🔮 ML / Predictive</button>
+            <button class="nav-btn" onclick="showSection('gen')">✍️ Generative AI</button>
+            <button class="nav-btn" onclick="showSection('agentic')">🤖 Agentic AI</button>
+        </div>
+
+        <!-- ML / Predictive Use Cases -->
+        <div id="ml" class="content-section active">
+            <h2 class="section-title">🔮 Machine Learning & Predictive Analytics</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                Advanced statistical models and algorithms for disease prediction, patient risk assessment, and healthcare optimization
+            </p>
+
+            <div class="card-grid">
+                <!-- Disease Progression Prediction -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">📊</div>
+                        <div>
+                            <div class="card-title">Disease Progression Prediction</div>
+                            <div class="card-subtitle">Clinical Trajectory Modeling</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict how diseases will progress in individual patients to enable early intervention and personalized treatment plans.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Survival Analysis</span>
+                            <span class="tech-tag">Longitudinal Data Models</span>
+                            <span class="tech-tag">Deep Learning</span>
+                            <span class="tech-tag">Cox Proportional Hazards</span>
+                            <span class="tech-tag">Recurrent Neural Networks</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">EHR Data → Feature Engineering → Temporal Modeling → Progression Prediction → Treatment Planning</div>
+                            <div class="architecture-item">Genomic Data → Biomarker Analysis → Risk Stratification → Intervention Strategy → Monitoring</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Longitudinal Electronic Health Records (EHR)</li>
+                                <li>Genomic and molecular profiling data</li>
+                                <li>Imaging studies and radiological reports</li>
+                                <li>Laboratory test results and biomarkers</li>
+                                <li>Medication history and treatment responses</li>
+                                <li>Lifestyle and environmental factors</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Prediction Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Early Intervention</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">20-40%</div>
+                                <div class="metric-label">Treatment Optimization</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hospital Readmission Risk -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🏥</div>
+                        <div>
+                            <div class="card-title">Hospital Readmission Risk</div>
+                            <div class="card-subtitle">30-Day Readmission Modeling</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict patients at high risk of hospital readmission within 30 days to improve care coordination and reduce costs.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Gradient Boosting</span>
+                            <span class="tech-tag">Logistic Regression</span>
+                            <span class="tech-tag">Random Forest</span>
+                            <span class="tech-tag">Time Series Analysis</span>
+                            <span class="tech-tag">Ensemble Methods</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Discharge Data → Risk Factor Analysis → Model Prediction → Care Coordination → Follow-up Planning</div>
+                            <div class="architecture-item">Social Determinants → Comorbidity Assessment → Risk Stratification → Intervention Design → Monitoring</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Historical admission and readmission records</li>
+                                <li>Comorbidity indices and severity scores</li>
+                                <li>Social determinants of health data</li>
+                                <li>Medication reconciliation records</li>
+                                <li>Post-discharge follow-up data</li>
+                                <li>Insurance and socioeconomic factors</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">75-85%</div>
+                                <div class="metric-label">Risk Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">15-25%</div>
+                                <div class="metric-label">Readmission Reduction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">$5,000-15,000</div>
+                                <div class="metric-label">Cost Savings/Patient</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sepsis Early Warning -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">🚨</div>
+                        <div>
+                            <div class="card-title">Sepsis Early Warning</div>
+                            <div class="card-subtitle">Critical Care Monitoring</div>
+                            <span class="critical-care-badge">Critical Care</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Detect early signs of sepsis in hospitalized patients to enable rapid intervention and improve survival rates.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Real-time Monitoring</span>
+                            <span class="tech-tag">Time Series Analysis</span>
+                            <span class="tech-tag">Anomaly Detection</span>
+                            <span class="tech-tag">SIRS Criteria Analysis</span>
+                            <span class="tech-tag">Deep Learning</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Vital Signs → Real-time Analysis → Sepsis Prediction → Alert Generation → Clinical Response</div>
+                            <div class="architecture-item">Lab Results → Biomarker Trends → Risk Assessment → Escalation Protocol → Treatment Initiation</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Continuous vital sign monitoring (HR, BP, Temp, RR)</li>
+                                <li>Serial laboratory values (WBC, lactate, creatinine)</li>
+                                <li>Fluid balance and urine output data</li>
+                                <li>Infection source identification</li>
+                                <li>Antibiotic administration timing</li>
+                                <li>Patient comorbidities and risk factors</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Early Detection</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">6-12 hours</div>
+                                <div class="metric-label">Early Warning</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">20-30%</div>
+                                <div class="metric-label">Mortality Reduction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ICU Deterioration Prediction -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">⚠️</div>
+                        <div>
+                            <div class="card-title">ICU Deterioration</div>
+                            <div class="card-subtitle">Critical Patient Monitoring</div>
+                            <span class="critical-care-badge">ICU</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict patient deterioration in intensive care units to enable timely interventions and resource allocation.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Multi-modal Data Fusion</span>
+                            <span class="tech-tag">Deep Learning</span>
+                            <span class="tech-tag">Time Series Forecasting</span>
+                            <span class="tech-tag">Physiological Modeling</span>
+                            <span class="tech-tag">Risk Stratification</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Physiological Data → Pattern Recognition → Deterioration Prediction → Escalation Protocol</div>
+                            <div class="architecture-item">Ventilator Settings → Respiratory Analysis → Intervention Planning → Monitoring</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Continuous physiological monitoring data</li>
+                                <li>Mechanical ventilation parameters</li>
+                                <li>Hemodynamic measurements</li>
+                                <li>Neurological assessments</li>
+                                <li>Laboratory trends and biomarkers</li>
+                                <li>Medication administration records</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Prediction Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">2-4 hours</div>
+                                <div class="metric-label">Early Warning</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">15-25%</div>
+                                <div class="metric-label">ICU Stay Reduction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medical Imaging Diagnosis -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">📷</div>
+                        <div>
+                            <div class="card-title">Medical Imaging Diagnosis</div>
+                            <div class="card-subtitle">AI-assisted Radiology</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Assist radiologists in detecting and diagnosing medical conditions from imaging studies with high accuracy and consistency.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Convolutional Neural Networks</span>
+                            <span class="tech-tag">Transfer Learning</span>
+                            <span class="tech-tag">Image Segmentation</span>
+                            <span class="tech-tag">Object Detection</span>
+                            <span class="tech-tag">3D Deep Learning</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Medical Images → Preprocessing → Feature Extraction → AI Analysis → Radiologist Review</div>
+                            <div class="architecture-item">DICOM Data → Model Inference → Abnormality Detection → Report Generation → Clinical Integration</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Annotated medical imaging datasets (X-ray, CT, MRI)</li>
+                                <li>Radiology reports and ground truth labels</li>
+                                <li>Patient outcomes and follow-up data</li>
+                                <li>Multi-institutional data sharing</li>
+                                <li>Quality control and validation datasets</li>
+                                <li>Diverse patient population representation</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-98%</div>
+                                <div class="metric-label">Detection Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Reading Speed</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">15-25%</div>
+                                <div class="metric-label">Diagnostic Consistency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drug Response Prediction -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ml">💊</div>
+                        <div>
+                            <div class="card-title">Drug Response Prediction</div>
+                            <div class="card-subtitle">Pharmacogenomics & Precision Medicine</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Predict individual patient responses to medications based on genetic, clinical, and lifestyle factors.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Pharmacogenomics</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Genomic Analysis</span>
+                            <span class="tech-tag">Clinical Decision Support</span>
+                            <span class="tech-tag">Personalized Medicine</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Genetic Data → Pharmacogenomic Analysis → Drug Metabolism Prediction → Dosing Optimization</div>
+                            <div class="architecture-item">Clinical Data → Response Modeling → Adverse Event Prediction → Treatment Selection</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Genomic sequencing and variant data</li>
+                                <li>Drug metabolism pathway information</li>
+                                <li>Clinical trial data and outcomes</li>
+                                <li>Electronic health records with medication responses</li>
+                                <li>Pharmacovigilance databases</li>
+                                <li>Population-specific genetic data</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">70-85%</div>
+                                <div class="metric-label">Response Prediction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Adverse Event Reduction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">25-40%</div>
+                                <div class="metric-label">Treatment Efficacy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generative AI Use Cases -->
+        <div id="gen" class="content-section">
+            <h2 class="section-title">✍️ Generative AI Applications</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                AI-powered content generation, clinical documentation, and patient communication in healthcare
+            </p>
+
+            <div class="card-grid">
+                <!-- Clinical Note Auto-Drafting -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📝</div>
+                        <div>
+                            <div class="card-title">Clinical Note Auto-Drafting</div>
+                            <div class="card-subtitle">SOAP Note Generation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Automatically generate structured clinical notes from patient encounters to reduce physician documentation burden.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Medical NLP</span>
+                            <span class="tech-tag">Template-based Generation</span>
+                            <span class="tech-tag">Clinical Ontologies</span>
+                            <span class="tech-tag">HIPAA Compliance</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Patient Encounter → Voice Transcription → Clinical Context → Note Generation → Physician Review</div>
+                            <div class="architecture-item">EHR Data → Template Selection → Structured Output → Quality Assurance → Documentation</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Historical clinical notes and documentation patterns</li>
+                                <li>Medical coding systems (ICD-10, CPT, SNOMED)</li>
+                                <li>Clinical guidelines and best practices</li>
+                                <li>Physician preferences and customization rules</li>
+                                <li>Compliance requirements and audit trails</li>
+                                <li>Integration with existing EHR systems</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Time Savings</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">95-99%</div>
+                                <div class="metric-label">Documentation Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">10-15 minutes</div>
+                                <div class="metric-label">Note Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Discharge Summary Generation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📋</div>
+                        <div>
+                            <div class="card-title">Discharge Summary Generation</div>
+                            <div class="card-subtitle">Hospital Stay Documentation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Automatically generate comprehensive discharge summaries from hospital admission data and clinical notes.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Medical Summarization</span>
+                            <span class="tech-tag">Structured Data Extraction</span>
+                            <span class="tech-tag">Care Coordination</span>
+                            <span class="tech-tag">Follow-up Planning</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Admission Data → Clinical Course → Treatment Summary → Discharge Instructions → Follow-up Plan</div>
+                            <div class="architecture-item">Medication Reconciliation → Test Results → Provider Notes → Summary Generation → Review Process</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Complete electronic health record data</li>
+                                <li>Medication administration records</li>
+                                <li>Laboratory and imaging results</li>
+                                <li>Provider progress notes and orders</li>
+                                <li>Discharge planning documentation</li>
+                                <li>Follow-up appointment scheduling</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">70-85%</div>
+                                <div class="metric-label">Time Reduction</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Information Completeness</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">2-4 hours</div>
+                                <div class="metric-label">Generation Time</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Radiology Report Drafting -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📷</div>
+                        <div>
+                            <div class="card-title">Radiology Report Drafting</div>
+                            <div class="card-subtitle">AI-assisted Reporting</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate preliminary radiology reports from imaging studies to assist radiologists and improve reporting efficiency.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Medical Imaging Analysis</span>
+                            <span class="tech-tag">Structured Reporting</span>
+                            <span class="tech-tag">Radiology Ontologies</span>
+                            <span class="tech-tag">Quality Assurance</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Imaging Study → AI Analysis → Finding Detection → Report Drafting → Radiologist Review</div>
+                            <div class="architecture-item">DICOM Data → Template Generation → Structured Report → Clinical Correlation → Finalization</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Annotated radiology reports and imaging studies</li>
+                                <li>Radiology reporting templates and standards</li>
+                                <li>Medical terminology and coding systems</li>
+                                <li>Quality metrics and reporting guidelines</li>
+                                <li>Integration with PACS systems</li>
+                                <li>Radiologist feedback and correction data</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Report Drafting Speed</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Report Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">15-25%</div>
+                                <div class="metric-label">Radiologist Efficiency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Patient-Friendly Explanations -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">💬</div>
+                        <div>
+                            <div class="card-title">Patient-Friendly Diagnosis</div>
+                            <div class="card-subtitle">Medical Explanation Generation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate easy-to-understand explanations of medical diagnoses and treatment plans for patients.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Health Literacy</span>
+                            <span class="tech-tag">Plain Language Generation</span>
+                            <span class="tech-tag">Cultural Sensitivity</span>
+                            <span class="tech-tag">Patient Education</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Medical Diagnosis → Plain Language Translation → Patient Context → Explanation Generation → Review</div>
+                            <div class="architecture-item">Treatment Plan → Risk/Benefit Analysis → Lifestyle Considerations → Communication → Follow-up</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Medical terminology and layperson equivalents</li>
+                                <li>Health literacy assessment tools</li>
+                                <li>Culturally appropriate communication styles</li>
+                                <li>Patient education materials and resources</li>
+                                <li>Common patient questions and concerns</li>
+                                <li>Visual aids and multimedia content</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Patient Understanding</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-80%</div>
+                                <div class="metric-label">Satisfaction Improvement</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">Real-time</div>
+                                <div class="metric-label">Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medical Literature Summarization -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">📚</div>
+                        <div>
+                            <div class="card-title">Medical Literature Summarization</div>
+                            <div class="card-subtitle">Research Abstract Generation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Summarize complex medical literature and research papers for quick clinical reference and decision-making.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">GPT-4/Claude</span>
+                            <span class="tech-tag">Scientific NLP</span>
+                            <span class="tech-tag">Evidence-based Medicine</span>
+                            <span class="tech-tag">Clinical Guidelines</span>
+                            <span class="tech-tag">Research Synthesis</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Research Paper → Content Analysis → Key Finding Extraction → Clinical Relevance → Summary Generation</div>
+                            <div class="architecture-item">Evidence Quality → Guideline Integration → Practice Recommendations → Dissemination → Implementation</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Medical journal articles and research papers</li>
+                                <li>Clinical trial databases and registries</li>
+                                <li>Systematic reviews and meta-analyses</li>
+                                <li>Clinical practice guidelines</li>
+                                <li>Evidence grading systems</li>
+                                <li>Specialty-specific literature</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">90-95%</div>
+                                <div class="metric-label">Information Retention</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Time Savings</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">5-10 minutes</div>
+                                <div class="metric-label">Summary Generation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Synthetic Medical Data Generation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon gen">🧪</div>
+                        <div>
+                            <div class="card-title">Synthetic Medical Data</div>
+                            <div class="card-subtitle">Privacy-preserving Data Generation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Generate realistic synthetic medical data for research, training, and development while preserving patient privacy.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Generative Adversarial Networks</span>
+                            <span class="tech-tag">Differential Privacy</span>
+                            <span class="tech-tag">Data Augmentation</span>
+                            <span class="tech-tag">Medical Data Standards</span>
+                            <span class="tech-tag">Validation Frameworks</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Real Medical Data → Privacy Protection → Synthetic Generation → Quality Validation → Research Use</div>
+                            <div class="architecture-item">Data Patterns → Statistical Modeling → Synthetic Creation → Privacy Audit → Distribution</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>De-identified medical datasets</li>
+                                <li>Privacy protection algorithms</li>
+                                <li>Data quality validation metrics</li>
+                                <li>Regulatory compliance requirements</li>
+                                <li>Statistical similarity measures</li>
+                                <li>Use case-specific data generation</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">95-99%</div>
+                                <div class="metric-label">Privacy Protection</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Data Fidelity</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">100x</div>
+                                <div class="metric-label">Data Availability</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agentic AI Use Cases -->
+        <div id="agentic" class="content-section">
+            <h2 class="section-title">🤖 Agentic AI Systems</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">
+                Autonomous AI agents that can reason, plan, and execute complex healthcare workflows and clinical decision-making
+            </p>
+
+            <div class="card-grid">
+                <!-- Clinical Decision Support Agent -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🧠</div>
+                        <div>
+                            <div class="card-title">Clinical Decision Support</div>
+                            <div class="card-subtitle">Intelligent Diagnostic Assistant</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Provide real-time, evidence-based clinical decision support to healthcare providers at the point of care.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Multi-Agent Systems</span>
+                            <span class="tech-tag">Evidence-based Medicine</span>
+                            <span class="tech-tag">Clinical Guidelines</span>
+                            <span class="tech-tag">Knowledge Graphs</span>
+                            <span class="tech-tag">Real-time Analysis</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Patient Data → Evidence Retrieval → Guideline Matching → Risk Assessment → Recommendation Generation</div>
+                            <div class="architecture-item">Clinical Presentation → Differential Analysis → Test Ordering → Treatment Planning → Monitoring</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Clinical practice guidelines and protocols</li>
+                                <li>Medical knowledge bases and ontologies</li>
+                                <li>Clinical decision rules and algorithms</li>
+                                <li>Patient-specific data integration</li>
+                                <li>Drug interaction databases</li>
+                                <li>Outcome prediction models</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Guideline Adherence</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Decision Speed</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">15-25%</div>
+                                <div class="metric-label">Diagnostic Accuracy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Care Coordination Orchestrator -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🤝</div>
+                        <div>
+                            <div class="card-title">Care Coordination Orchestrator</div>
+                            <div class="card-subtitle">Multi-disciplinary Team Management</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Coordinate care across multiple healthcare providers and specialties to ensure comprehensive patient management.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Multi-Agent Coordination</span>
+                            <span class="tech-tag">Care Pathway Management</span>
+                            <span class="tech-tag">Communication Orchestration</span>
+                            <span class="tech-tag">Task Management</span>
+                            <span class="tech-tag">Patient Monitoring</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Patient Assessment → Care Team Assembly → Task Assignment → Progress Tracking → Outcome Monitoring</div>
+                            <div class="architecture-item">Specialty Coordination → Appointment Scheduling → Test Coordination → Medication Management → Follow-up</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Provider network and specialty directories</li>
+                                <li>Appointment scheduling systems</li>
+                                <li>Test and procedure coordination</li>
+                                <li>Medication reconciliation data</li>
+                                <li>Patient progress tracking</li>
+                                <li>Outcome measurement systems</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">70-85%</div>
+                                <div class="metric-label">Coordination Efficiency</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">25-40%</div>
+                                <div class="metric-label">Care Continuity</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">15-30%</div>
+                                <div class="metric-label">Patient Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prior Authorization Automation -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">📋</div>
+                        <div>
+                            <div class="card-title">Prior Authorization Automation</div>
+                            <div class="card-subtitle">Insurance Approval Agent</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Automate the prior authorization process for medical procedures and medications to reduce administrative burden.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Document Processing</span>
+                            <span class="tech-tag">Insurance Rules Engine</span>
+                            <span class="tech-tag">Claims Processing</span>
+                            <span class="tech-tag">Communication Automation</span>
+                            <span class="tech-tag">Status Tracking</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Medical Order → Insurance Verification → Documentation Gathering → Submission → Status Monitoring</div>
+                            <div class="architecture-item">Clinical Justification → Policy Matching → Appeal Generation → Approval Tracking → Notification</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Insurance policy databases and rules</li>
+                                <li>Clinical documentation requirements</li>
+                                <li>Prior authorization forms and templates</li>
+                                <li>Appeal process workflows</li>
+                                <li>Provider insurance contracts</li>
+                                <li>Real-time status tracking systems</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Approval Rate</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">70-85%</div>
+                                <div class="metric-label">Processing Time</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">50-70%</div>
+                                <div class="metric-label">Administrative Burden</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hospital Bed Management -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🏥</div>
+                        <div>
+                            <div class="card-title">Hospital Bed Management</div>
+                            <div class="card-subtitle">Capacity Optimization Agent</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Optimize hospital bed allocation and patient flow to improve capacity utilization and patient care.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Resource Optimization</span>
+                            <span class="tech-tag">Predictive Analytics</span>
+                            <span class="tech-tag">Patient Flow Management</span>
+                            <span class="tech-tag">Capacity Planning</span>
+                            <span class="tech-tag">Real-time Monitoring</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Admission Requests → Bed Availability → Patient Needs → Allocation Decision → Discharge Planning</div>
+                            <div class="architecture-item">Capacity Analysis → Demand Forecasting → Resource Allocation → Workflow Optimization → Monitoring</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Real-time bed occupancy data</li>
+                                <li>Patient acuity and care requirements</li>
+                                <li>Discharge planning information</li>
+                                <li>Admission forecasts and trends</li>
+                                <li>Staffing levels and capabilities</li>
+                                <li>Equipment and resource availability</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Bed Utilization</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">20-35%</div>
+                                <div class="metric-label">Length of Stay</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Patient Wait Times</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clinical Trial Matching -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">🔬</div>
+                        <div>
+                            <div class="card-title">Clinical Trial Matching</div>
+                            <div class="card-subtitle">Patient Recruitment Agent</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Match eligible patients with appropriate clinical trials to accelerate research and provide treatment options.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Eligibility Matching</span>
+                            <span class="tech-tag">Trial Database Integration</span>
+                            <span class="tech-tag">Patient Profiling</span>
+                            <span class="tech-tag">Consent Management</span>
+                            <span class="tech-tag">Recruitment Automation</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Patient Data → Eligibility Analysis → Trial Matching → Provider Notification → Consent Process</div>
+                            <div class="architecture-item">Trial Requirements → Patient Screening → Match Scoring → Recruitment Outreach → Enrollment</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Clinical trial databases and protocols</li>
+                                <li>Patient eligibility criteria and medical history</li>
+                                <li>Informed consent documentation</li>
+                                <li>Provider preferences and trial relationships</li>
+                                <li>Recruitment tracking and analytics</li>
+                                <li>Regulatory compliance requirements</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">80-90%</div>
+                                <div class="metric-label">Match Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">60-80%</div>
+                                <div class="metric-label">Recruitment Speed</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">30-50%</div>
+                                <div class="metric-label">Trial Enrollment</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Revenue Cycle Management -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="icon ag">💰</div>
+                        <div>
+                            <div class="card-title">Revenue Cycle Management</div>
+                            <div class="card-subtitle">Financial Operations Agent</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p><strong>Objective:</strong> Automate and optimize healthcare revenue cycle processes including billing, coding, and collections.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-tag">Claims Processing</span>
+                            <span class="tech-tag">Medical Coding</span>
+                            <span class="tech-tag">Payment Posting</span>
+                            <span class="tech-tag">Denial Management</span>
+                            <span class="tech-tag">Patient Billing</span>
+                        </div>
+
+                        <div class="architecture-diagram">
+                            <div class="architecture-item">Service Delivery → Charge Capture → Coding Validation → Claim Submission → Payment Processing</div>
+                            <div class="architecture-item">Patient Registration → Insurance Verification → Billing Generation → Collections → Reporting</div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <span class="highlight-title">Ground Data Strategy:</span>
+                            <ul>
+                                <li>Medical coding systems (ICD-10, CPT, HCPCS)</li>
+                                <li>Insurance payer rules and requirements</li>
+                                <li>Charge capture systems</li>
+                                <li>Claims submission and tracking</li>
+                                <li>Payment posting and reconciliation</li>
+                                <li>Denial management and appeals</li>
+                            </ul>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">85-95%</div>
+                                <div class="metric-label">Claim Accuracy</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">40-60%</div>
+                                <div class="metric-label">Processing Speed</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">25-40%</div>
+                                <div class="metric-label">Revenue Recovery</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>✨ Built with cutting-edge AI technologies for the future of healthcare</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                Note: Implementation requires careful consideration of HIPAA compliance, patient privacy, clinical validation, and regulatory approval
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Find and activate the clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
