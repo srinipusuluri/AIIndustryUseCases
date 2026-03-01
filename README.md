@@ -12,82 +12,82 @@ This repository contains detailed use cases demonstrating AI applications in:
 
 ## 📊 Industry Categories
 
-### 🏦 Finance Industry
+### 🏦 [Finance Industry](../finance-ai-use-cases/index.html)
 Risk management, trading, compliance, and customer service applications
 
-### 🏥 Healthcare Industry  
+### 🏥 [Healthcare Industry](../healthcare-ai-use-cases/index.html)  
 Clinical decision support, patient care, and medical research applications
 
-### 🚚 Transportation & Logistics
+### 🚚 [Transportation & Logistics](../transportation-ai-use-cases/index.html)
 Supply chain optimization, fleet management, and delivery operations
 
-### 🚗 Automotive Industry
+### 🚗 [Automotive Industry](../automotive-ai-use-cases/index.html)
 Vehicle performance, safety systems, manufacturing, and mobility services
 
-### 💊 Pharmaceuticals & Life Sciences
+### 💊 [Pharmaceuticals & Life Sciences](../pharma-ai-use-cases/index.html)
 Drug discovery, clinical trials, regulatory compliance, and precision medicine
 
-### 🎬 Media & Entertainment
+### 🎬 [Media & Entertainment](../media-ai-use-cases/index.html)
 Content creation, audience engagement, streaming optimization, and creative production
 
-### 🎓 Education (EdTech)
+### 🎓 [Education (EdTech)](../education-ai-use-cases/index.html)
 Personalized learning, academic support, educational planning, and student success
 
-### ✈️ Travel & Hospitality
+### ✈️ [Travel & Hospitality](../travel-ai-use-cases/index.html)
 Customer experience, revenue management, booking optimization, and global service delivery
 
-### 🌾 Agriculture (AgTech)
+### 🌾 [Agriculture (AgTech)](../agriculture-ai-use-cases/index.html)
 Crop optimization, livestock management, precision farming, and sustainable agriculture
 
-### 🏛️ Government & Public Sector
+### 🏛️ [Government & Public Sector](../government-ai-use-cases/index.html)
 Public administration, citizen services, policy management, and civic engagement
 
-### 🚀 Defense & Aerospace
+### 🚀 [Defense & Aerospace](../defense-ai-use-cases/index.html)
 Military operations, aerospace systems, security intelligence, and strategic command
 
-### 🔒 Cybersecurity
+### 🔒 [Cybersecurity](../cybersecurity-ai-use-cases/index.html)
 Threat detection, security operations, incident response, and protective systems
 
-### ⚖️ Legal Services (LegalTech)
+### ⚖️ [Legal Services (LegalTech)](../legaltech-ai-use-cases/index.html)
 Case management, legal research, contract analysis, and client service
 
-### 👥 Human Resources (HRTech)
+### 👥 [Human Resources (HRTech)](../hrtech-ai-use-cases/index.html)
 Talent management, workforce optimization, employee experience, and organizational development
 
-### 📦 Supply Chain & Procurement
+### 📦 [Supply Chain & Procurement](../supplychain-ai-use-cases/index.html)
 Inventory optimization, supplier management, logistics coordination, and strategic sourcing
 
-### 📢 Marketing & Advertising
+### 📢 [Marketing & Advertising](../marketing-ai-use-cases/index.html)
 Customer engagement, campaign management, content creation, and brand optimization
 
-### 🏗️ Construction Industry
+### 🏗️ [Construction Industry](../construction-ai-use-cases/index.html)
 Project management, safety compliance, equipment maintenance, and structural integrity
 
-### ⛏️ Mining Industry
+### ⛏️ [Mining Industry](../mining-ai-use-cases/index.html)
 Mineral extraction, resource management, operational safety, and environmental compliance
 
-### 🎮 Gaming Industry
+### 🎮 [Gaming Industry](../gaming-ai-use-cases/index.html)
 Player experience, game development, live operations, and content creation
 
-### ⚽ Sports & Sports Analytics
+### ⚽ [Sports & Sports Analytics](../sports-ai-use-cases/index.html)
 Athletic performance, team management, fan engagement, and competitive strategy
 
-### 📞 Call Center & Customer Service
+### 📞 [Call Center & Customer Service](../callcenter-ai-use-cases/index.html)
 Contact center operations, customer experience, and service optimization
 
-### 📧 CRM Marketing Cloud
+### 📧 [CRM Marketing Cloud](../crm-marketing-ai-use-cases/index.html)
 Customer relationship management, marketing automation, and campaign optimization
 
-### 💼 CRM Sales Cloud
+### 💼 [CRM Sales Cloud](../crm-sales-ai-use-cases/index.html)
 Customer relationship management, sales automation, and revenue optimization
 
-### 💰 CRM Revenue Cloud
+### 💰 [CRM Revenue Cloud](../crm-revenue-ai-use-cases/index.html)
 Customer relationship management, CPQ automation, billing, and pricing optimization
 
-### 🛠️ CRM Service Cloud
+### 🛠️ [CRM Service Cloud](../crm-service-ai-use-cases/index.html)
 Customer relationship management, service automation, case management, and support operations
 
-### 🌐 CRM Communities
+### 🌐 [CRM Communities](../crm-communities-ai-use-cases/index.html)
 Customer/partner portals, community engagement, knowledge sharing, and portal management
 
 ## 🔬 AI Technology Categories
